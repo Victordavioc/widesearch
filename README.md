@@ -1,7 +1,7 @@
 ### ms_20242_grupo 5
 Projeto definido em criar um buscador de produtos usados em mais de uma plataforma
 
-##Grupo
+## Grupo
 
 |Matrícula|Nome|Usuário Git|
 |---|---|---|
