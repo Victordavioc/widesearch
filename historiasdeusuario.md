@@ -52,7 +52,7 @@ HU-002
 Sistema de Busca Centralizada com Filtros Avançados
 
 ### **Descrição:**  
-Como **usuário final**, eu quero **buscar por produtos usados compilados de várias plataformas (OLX, Facebook Marketplace, etc.)** utilizando **filtros avançados**, para que **eu possa encontrar rapidamente o produto que atenda às minhas necessidades**.
+Como **usuário final**, eu quero **buscar por produtos usados compilados de várias plataformas (OLX, Facebook Marketplace, etc.)**, para que **eu possa encontrar rapidamente o produto que atenda às minhas necessidades**.
 
 ### **Critérios de Aceitação:**
 
@@ -242,3 +242,4 @@ Média
 
 ### *Notas/Comentários Adicionais:*
 - Consultar a equipe de análise de dados sobre métricas a serem exibidas.
+
