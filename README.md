@@ -44,12 +44,12 @@ Este projeto será desenvolvido pelos componentes do grupo 5:
 
 ### Backlog do Produto
 
-1. RF001 - <Coleta de Dados (Web Scraping\API)>.
-2. RF002 - <Busca Centralizada com Filtros Avançados>.
-3. RF003 - <Página de Detalhes do Produto>.
-4. RF004 - <Notificações e Monitoramento de Preços>.
-5. RF005 - <Geolocalização e Filtros por Distância>.
-6. RF006 - <Análise de Dados e Tendências>.
+1. RF001 - Coleta de Dados (Web Scraping\API): <Coletar anúncios de produtos usados de várias plataformas (OLX, Facebook Marketplace, etc.)>.
+2. RF002 - Sistema de Busca Centralizada: <Permitir que os usuários busquem por produtos compilados de várias plataformas com filtros avançados>.
+3. RF003 - Página de Detalhes do Produto: <Exibir detalhes de cada produto, incluindo informações de qual plataforma ele foi extraído>.
+4. RF004 - Sistema de Filtros Avançados: <Notificar usuários quando um produto específico ou uma categoria de produtos aparecer com um preço desejado.>.
+5. RF005 - Monitoramento de Preços e Notificações: <Geolocalização e Filtros por Distância>.
+6. RF006 - Análise de Dados e Estatísticas: <Coletar e exibir dados de tendências de mercado, como variação de preço por categoria e popularidade de produtos>.
 
 ### Requisitos Não Funcionais
 
