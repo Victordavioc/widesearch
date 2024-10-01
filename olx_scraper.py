@@ -16,7 +16,10 @@ def coletar_anuncios_olx(pesquisa):
     # Fazendo a requisição à API do ZenRows
     response = requests.get(url, headers=headers)
     
-    
+    # Verificando o status da requisição
+    if response.status_code != 200:
+        print(f"Erro ao acessar a API do ZenRows: {response.status_code}")
+        return
     
     # Utilizando BeautifulSoup para parsear o HTML retornado pela API
     soup = BeautifulSoup(response.text, 'html.parser')
@@ -45,9 +48,10 @@ def coletar_anuncios_olx(pesquisa):
 def mostrar_anuncios(df):
     if df is not None and not df.empty:
         print(df[['Título', 'Preço', 'Localização', 'Link']].to_string(index=False))
-    
+    else:
+        print("Nenhum anúncio encontrado.")
 
-if __name__ == "__main__":
+if _name_ == "_main_":
     pesquisa = input("Digite o produto que deseja buscar: ").strip().replace(" ", "%20")  # Codificando espaços como %20
     df_anuncios = coletar_anuncios_olx(pesquisa)
     mostrar_anuncios(df_anuncios)
