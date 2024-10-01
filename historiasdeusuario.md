@@ -52,7 +52,7 @@ HU-002
 Sistema de Busca Centralizada com Filtros Avançados
 
 ### **Descrição:**  
-Como **usuário final**, eu quero **buscar por produtos usados compilados de várias plataformas (OLX, Facebook Marketplace, etc.)** utilizando **filtros avançados**, para que **eu possa encontrar rapidamente o produto que atenda às minhas necessidades**.
+Como **usuário final**, eu quero **buscar por produtos usados compilados de várias plataformas (OLX, Facebook Marketplace, etc.)**, para que **eu possa encontrar rapidamente o produto que atenda às minhas necessidades**.
 
 ### **Critérios de Aceitação:**
 
@@ -132,3 +132,114 @@ Média
 
 ### **Notas/Comentários Adicionais:**
 - O sistema deve verificar periodicamente a disponibilidade dos produtos para evitar exibir itens que já foram removidos das plataformas.
+
+
+## *História de Usuário*
+
+### *ID:*  
+HU-004
+
+### *Título:*  
+Notificação de Preço para Produtos Específicos
+
+### *Descrição:*  
+Como *usuário interessado em produtos, eu quero **ser notificado quando um produto específico ou uma categoria de produtos aparecer com um preço desejado* para que *eu possa aproveitar as melhores ofertas e economizar dinheiro*.
+
+### *Critérios de Aceitação:*
+
+#### Cenário 1: Notificação de preço atingido
+- *Dado* que o usuário selecionou um produto e definiu um preço desejado,
+- *Quando* o preço do produto atinge o valor desejado,
+- *Então* o usuário deve receber uma notificação via e-mail ou aplicativo.
+
+#### Cenário 2: Notificação para categoria de produtos
+- *Dado* que o usuário selecionou uma categoria de produtos e definiu um preço desejado,
+- *Quando* um produto dentro da categoria atinge o preço desejado,
+- *Então* o usuário deve receber uma notificação informando sobre a oferta.
+
+### *Prioridade:*  
+Alta
+
+### *Estimativa de Esforço:*  
+5 Story Points
+
+### *Dependências:*  
+- Sistema de notificações (História HU-005).
+
+### *Notas/Comentários Adicionais:*
+- O usuário deve ter a opção de desativar as notificações a qualquer momento.
+
+---
+
+## *História de Usuário*
+
+### *ID:*  
+HU-005
+
+### *Título:*  
+Geolocalização e Filtros por Distância
+
+### *Descrição:*  
+Como *usuário que deseja comprar produtos localmente, eu quero **utilizar geolocalização para encontrar produtos disponíveis em lojas próximas* para que *eu possa economizar tempo e verificar a disponibilidade de produtos perto de mim*.
+
+### *Critérios de Aceitação:*
+
+#### Cenário 1: Busca de produtos por geolocalização
+- *Dado* que o usuário permitiu o acesso à sua localização,
+- *Quando* ele realiza uma busca por produtos,
+- *Então* os resultados devem incluir apenas produtos disponíveis dentro de um raio definido pelo usuário.
+
+#### Cenário 2: Filtro de distância
+- *Dado* que o usuário definiu um raio de distância para a busca,
+- *Quando* ele altera o raio de distância,
+- *Então* os resultados devem ser atualizados para refletir os novos critérios de busca.
+
+### *Prioridade:*  
+Alta
+
+### *Estimativa de Esforço:*  
+8 Story Points
+
+### *Dependências:*  
+- Integração com API de geolocalização (História HU-008).
+
+### *Notas/Comentários Adicionais:*
+- O sistema deve respeitar as configurações de privacidade do usuário ao acessar a localização.
+
+---
+
+## *História de Usuário*
+
+### *ID:*  
+HU-006
+
+### *Título:*  
+Coleta de Dados de Tendências de Mercado
+
+### *Descrição:*  
+Como *gerente de produto, eu quero **acessar dados e estatísticas sobre tendências de mercado, como variação de preço por categoria e popularidade de produtos* para que *eu possa tomar decisões informadas sobre estratégias de precificação e marketing*.
+
+### *Critérios de Aceitação:*
+
+#### Cenário 1: Exibição de dados de variação de preço
+- *Dado* que o usuário acessa a seção de tendências de mercado,
+- *Quando* ele seleciona uma categoria de produtos,
+- *Então* o sistema deve exibir a variação de preço dessa categoria ao longo do tempo.
+
+#### Cenário 2: Dados de popularidade de produtos
+- *Dado* que o usuário está na mesma seção,
+- *Quando* ele solicita informações sobre a popularidade,
+- *Então* o sistema deve fornecer dados sobre vendas e avaliações dos produtos mais populares na categoria.
+
+### *Prioridade:*  
+Média
+
+### *Estimativa de Esforço:*  
+8 Story Points
+
+### *Dependências:*  
+- Sistema de coleta e análise de dados (História HU-009).
+
+### *Notas/Comentários Adicionais:*
+- Consultar a equipe de análise de dados sobre métricas a serem exibidas.
+
