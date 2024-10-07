@@ -53,21 +53,21 @@ Este projeto será desenvolvido pelos componentes do grupo 5:
 
 ### Requisitos Não Funcionais
 
-1. RNF001 - Usabilidade: <Descrição do Requisito não Funcional>.
-2. RNF002 - Segurança: <Descrição do Requisito não Funcional>..
-3. RNF003 - Desempenho: <Descrição do Requisito não Funcional>..
-4. RNF004 - Confiabilidade: <Descrição do Requisito não Funcional>.
-5. RNF005 - Manutenibilidade: <Descrição do Requisito não Funcional>.
-6. RNF006 - Portabilidade: <Descrição do Requisito não Funcional>.
-7. RNF007 - Conectividade: <Descrição do Requisito não Funcional>.
+1. RNF001 - Usabilidade: A interface do usuário deve ser intuitiva e de fácil navegação, com elementos gráficos e textuais bem organizados. A experiência de busca deve ser fluida e responsiva, garantindo que o usuário consiga visualizar e interagir com as informações de forma rápida e eficiente, tanto em dispositivos móveis quanto em desktop.
+2. RNF002 - Segurança: O sistema deve garantir a proteção dos dados do usuário e das informações coletadas das plataformas parceiras. Assegurar que todas as comunicações sejam feitas através de protocolos seguros (HTTPS) e implementar medidas de controle de acesso para prevenir uso não autorizado.
+3. RNF003 - Desempenho: O sistema deve ser capaz de processar e exibir resultados de busca em menos de 3 segundos para consultas comuns. O tempo de resposta não deve exceder 5 segundos para consultas complexas (com vários filtros). A coleta de dados deve ser otimizada para evitar sobrecarga nos servidores das plataformas externas.
+4. RNF004 - Confiabilidade: A aplicação deve funcionar de forma contínua, garantindo um tempo de atividade (uptime) de no mínimo 99%. A coleta de dados deve ser robusta o suficiente para lidar com mudanças eventuais nas estruturas das plataformas externas.
+5. RNF005 - Manutenibilidade: O código deve ser modular e seguir boas práticas de desenvolvimento, facilitando manutenção e evolução do sistema. Devem ser documentadas as interfaces com as APIs e fontes de dados externas, para garantir que novos desenvolvedores possam entender e modificar o sistema com facilidade.
+6. RNF006 - Portabilidade: A aplicação deve ser capaz de ser executada em diferentes ambientes de execução, como Windows, Linux e macOS, e deve funcionar corretamente em navegadores modernos. A escolha da tecnologia de frontend deve priorizar frameworks responsivos para adaptar o layout a diferentes resoluções.
+7. RNF007 - Conectividade: O sistema deve ser capaz de se conectar a diferentes APIs de forma confiável, mesmo em ambientes com latência alta ou intermitência de rede. Devem ser implementados mecanismos de reintento e fallback para evitar falhas durante a coleta de dados.
 
 ### Regras de Negócio
 
-1. RN01 - <Descrição da Regra de Negócio>.
-2. RN02 - <Descrição da Regra de Negócio>.
-3. RN03 - <Descrição da Regra de Negócio>.
-4. RN04 - <Descrição da Regra de Negócio>.
-5. RN05 - <Descrição da Regra de Negócio>.
+1. RN01 - Os usuários não devem ser cobrados para realizar buscas na plataforma. O modelo de monetização será baseado em anúncios ou parcerias.
+2. RN02 - A plataforma deve exibir sempre a fonte original do anúncio e redirecionar o usuário para o site de origem ao clicar no link de compra.
+3. RN03 - Os produtos exibidos devem ser sempre atualizados com informações mais recentes, conforme a coleta de dados das plataformas originais.
+4. RN04 - O sistema deve permitir que usuários cadastrados salvem buscas e ativem notificações para produtos específicos.
+5. RN05 - A plataforma não deve armazenar dados pessoais de usuários sem consentimento explícito, respeitando as diretrizes da LGPD (Lei Geral de Proteção de Dados) e do GDPR.
 
 ### Modelo Arquitetural
 
@@ -75,7 +75,9 @@ Este projeto será desenvolvido pelos componentes do grupo 5:
 
 ### Modelo de Interfaces Gráficas
 
-<Apresentar uma descrição sucinta do modelo de interfaces gráficas do Produto.>
+O modelo de interfaces será baseado em um layout de página única (SPA - Single Page Application), com uma barra de busca na parte superior, filtros avançados no lado esquerdo e os resultados das buscas ocupando a maior parte da tela. Os detalhes dos produtos serão exibidos em uma modal que incluirá as informações do produto e um link para o site de origem.
+
+Os filtros incluirão categorias como preço, localização, estado de conservação e plataforma de origem. Haverá uma seção para os produtos "mais populares" e "em alta" com base nas buscas recentes dos usuários.
 
 ### Tecnologia de Persistência de Dados
 
