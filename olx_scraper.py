@@ -51,7 +51,7 @@ def mostrar_anuncios(df):
     else:
         print("Nenhum anúncio encontrado.")
 
-if _name_ == "_main_":
+if __name__ == "__main__":
     pesquisa = input("Digite o produto que deseja buscar: ").strip().replace(" ", "%20")  # Codificando espaços como %20
     df_anuncios = coletar_anuncios_olx(pesquisa)
     mostrar_anuncios(df_anuncios)
