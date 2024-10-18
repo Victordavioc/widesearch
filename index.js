@@ -24,7 +24,7 @@ async function coletarAnunciosOLX(pesquisa, limite = 15) {
     const params = {
         url: urlOLX,
         apikey: ZENROWS_API_KEY,
-        js_render: 'false' 
+        js_render: 'true' 
     };
 
     try {
@@ -45,19 +45,17 @@ async function coletarAnunciosOLX(pesquisa, limite = 15) {
 
         items.each((i, item) => {
             if (i >= limite) return false; 
-
+        
             const titulo = $(item).text().trim();
-            const precoTag = $(item).next('h3.olx-ad-card__price');
+            const precoTag = $(item).closest('.olx-ad-card').find('.olx-ad-card__details-price--horizontal h3.olx-ad-card__price');
             const preco = precoTag.length ? precoTag.text().trim() : "Preço não informado";
-            const link = $(item).closest('a').attr('href') || "Link não disponível";
-
+            const link = $(item).closest('a').attr('href') || "Link não disponível";        
             anuncios.push({
                 Título: titulo,
                 Preço: preco,
                 Link: link
             });
         });
-
         return anuncios;
 
     } catch (error) {
