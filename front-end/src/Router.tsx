@@ -1,5 +1,6 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
-import Home from "./pages/Home";
+import SearchPage from "./pages/SearchPage";
+import ResultsPage from "./pages/ResultsPage";
 
 const router = createBrowserRouter([
   {
@@ -7,11 +8,15 @@ const router = createBrowserRouter([
     children: [
       {
         path: "",
-        element: <Navigate replace to="/home" />,
+        element: <Navigate replace to="/surch" />,
       },
       {
-        path: "home",
-        element: <Home />,
+        path: "surch",
+        element: <SearchPage />,
+      },
+      {
+        path: "results",
+        element: <ResultsPage />,
       },
     ],
   },
