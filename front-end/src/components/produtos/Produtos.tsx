@@ -39,13 +39,15 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-interface CustomPrintCardProps {
-  id: number;
+interface ProdutosProps {
   name: string;
   image_url: string;
+  price: string;
+  link: string;
+  id: number;
 }
 
-const CustomPrintCard: FC<CustomPrintCardProps> = ({ name, image_url }) => {
+const Produtos: FC<ProdutosProps> = ({ name, image_url, price, link }) => {
   const classes = useStyles();
 
   return (
@@ -54,8 +56,12 @@ const CustomPrintCard: FC<CustomPrintCardProps> = ({ name, image_url }) => {
       <div className={classes.divName}>
         <h2 className={classes.name}>{name}</h2>
       </div>
+      <h3>{price}</h3>
+      <a href={link} target="_blank" rel="noreferrer">
+        Ver mais
+      </a>
     </div>
   );
 };
 
-export default CustomPrintCard;
+export default Produtos;
