@@ -15,9 +15,17 @@ const userAgents = [
 const app = express();
 const port = 3000;
 
-app.use(cors()); // Permite que qualquer origem faça requisições à API
+app.use(cors());
 
 async function coletarAnunciosOLX(pesquisa, limite = 15) {
+  const urlDefault = `https://www.olx.com.br/brasil?q=${encodeURIComponent(
+    pesquisa
+  )}`;
+  const urlEstados = `https://www.olx.com.br/estado-${encodeURIComponent}?q=${encodeURIComponent(
+    estado,
+    pesquisa
+  )}`;
+
   const urlOLX = `https://www.olx.com.br/brasil?q=${encodeURIComponent(
     pesquisa
   )}`;
@@ -58,7 +66,12 @@ async function coletarAnunciosOLX(pesquisa, limite = 15) {
         : "Preço não informado";
       const link = $(item).closest("a").attr("href") || "Link não disponível";
 
-      anuncios.push({ Título: titulo, Preço: preco, Link: link });
+      const imagemTag = $(item)
+        .closest(".olx-ad-card")
+        .find("img")
+        .attr("src") || "Imagem não disponível";
+
+      anuncios.push({ Título: titulo, Preço: preco, Link: link, Imagem: imagemTag });
     });
 
     return anuncios;
@@ -68,7 +81,6 @@ async function coletarAnunciosOLX(pesquisa, limite = 15) {
   }
 }
 
-// Rota da API para buscar anúncios
 app.get("/api/anuncios", async (req, res) => {
   const { pesquisa } = req.query;
 
