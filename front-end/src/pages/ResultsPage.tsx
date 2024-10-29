@@ -14,6 +14,7 @@ interface Anuncio {
   Título: string;
   Preço: string;
   Link: string;
+  Imagem: string;
 }
 
 // Função de busca usando Axios
@@ -148,7 +149,7 @@ const ResultsPage: React.FC = () => {
                 id={index}
                 name={anuncio.Título}
                 price={anuncio.Preço}
-                image_url="https://via.placeholder.com/300"
+                image_url={anuncio.Imagem}
                 link={anuncio.Link}
               />
             ))
