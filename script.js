@@ -12,8 +12,6 @@ const userAgents = [
     'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
 ];
 
-
-
 async function coletarAnunciosOLX(pesquisa, limite = 15) {
     const urlOLX = `https://www.olx.com.br/brasil?q=${encodeURIComponent(pesquisa)}`;
 
@@ -40,7 +38,7 @@ async function coletarAnunciosOLX(pesquisa, limite = 15) {
             return;
         }
 
-        const $ = cheerio.load(response.data);
+        const´ $ = cheerio.load(response.data);
 
         const anuncios = [];
         const items = $('h2.olx-ad-card__title');
@@ -61,7 +59,7 @@ async function coletarAnunciosOLX(pesquisa, limite = 15) {
         });
 
         return anuncios;
-
+        
     } catch (error) {
         console.error(`Erro durante a requisição: ${error}`);
         return null;
@@ -86,22 +84,11 @@ const rl = readline.createInterface({
     output: process.stdout
 });
 
+
+
 rl.question("Digite o produto que deseja buscar: ", async (pesquisa) => {
     const anuncios = await coletarAnunciosOLX(pesquisa);
     mostrarAnuncios(anuncios);
     rl.close(); 
 });
 
-
-document.addEventListener('DOMContentLoaded', () => {
-    const form = document.getElementById('anuncioForm');
-
-    form.addEventListener('submit', (event) => {
-        event.preventDefault(); // Evita o envio padrão do formulário
-
-        const inputLink = document.getElementById('inputLink').value;
-
-        console.log(`Buscando anúncios para o link: ${inputLink}`);
-        // coletarAnunciosOLX(inputLink)
-    });
-});
