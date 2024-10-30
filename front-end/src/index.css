@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+body {
+    margin: 0;
+    padding: 0;
+  
+    font-family: 'Lato', sans-serif;
+  }
+  ::-webkit-scrollbar {
+    width: 8px; /* Largura da barra de rolagem vertical */
+    height: 8px; /* Altura da barra de rolagem horizontal */
+}
+
+/* Estiliza a "track" da barra de rolagem */
+::-webkit-scrollbar-track {
+    background: white; 
+}
+
+/* Estiliza o "thumb" da barra de rolagem */
+::-webkit-scrollbar-thumb {
+    background: darkblue; 
+    border-radius: 4px;
+}
+
+/* Estiliza o "thumb" da barra de rolagem quando está sendo usado */
+::-webkit-scrollbar-thumb:hover {
+    background: #7b0708; 
+}

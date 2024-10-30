@@ -5,7 +5,6 @@ import InputBase from "@mui/material/InputBase";
 import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
 import { useQuery } from "@tanstack/react-query";
-import { Card } from "@mui/material";
 import Produtos from "../components/produtos/Produtos";
 import { useState } from "react";
 import { axiosClient } from "../utils/axios";
@@ -136,7 +135,7 @@ const ResultsPage: React.FC = () => {
           </IconButton>
         </Paper>
       </header>
-      <Card className={classes.divCards}>
+      <div className={classes.divCards}>
         <div className={classes.divMap}>
           {isLoading ? (
             <p>Carregando...</p>
@@ -155,7 +154,7 @@ const ResultsPage: React.FC = () => {
             ))
           )}
         </div>
-      </Card>
+      </div>
     </div>
   );
 };

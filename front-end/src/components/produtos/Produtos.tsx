@@ -11,7 +11,6 @@ const useStyles = makeStyles(() => ({
     cursor: "pointer",
     backgroundColor: "white",
     borderRadius: "10px",
-    boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.2)",
     transition: "transform 0.2s",
     "&:hover": {
       transform: "scale(1.02)",
@@ -21,7 +20,7 @@ const useStyles = makeStyles(() => ({
   image: {
     width: "248px",
     height: "248px",
-    objectFit: "contain",
+    objectFit: "cover",
     borderTopLeftRadius: "10px",
     borderTopRightRadius: "10px",
   },

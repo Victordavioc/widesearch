@@ -4,7 +4,7 @@ const express = require("express");
 const cors = require("cors");
 
 const ZENROWS_API_URL = "https://api.zenrows.com/v1/";
-const ZENROWS_API_KEY = "00b37a7cc5282bc56764eae54a6b3679c62f65e6";
+const ZENROWS_API_KEY = "a945dad5191652e8d2b89300f664f00f41e3d10c";
 
 const userAgents = [
   "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:93.0) Gecko/20100101 Firefox/93.0",
@@ -21,10 +21,10 @@ async function coletarAnunciosOLX(pesquisa, limite = 15) {
   const urlDefault = `https://www.olx.com.br/brasil?q=${encodeURIComponent(
     pesquisa
   )}`;
-  const urlEstados = `https://www.olx.com.br/estado-${encodeURIComponent}?q=${encodeURIComponent(
-    estado,
-    pesquisa
-  )}`;
+  // const urlEstados = `https://www.olx.com.br/estado-${encodeURIComponent}?q=${encodeURIComponent(
+  // estado,
+  // pesquisa
+  // )}`;
 
   const urlOLX = `https://www.olx.com.br/brasil?q=${encodeURIComponent(
     pesquisa
@@ -66,12 +66,16 @@ async function coletarAnunciosOLX(pesquisa, limite = 15) {
         : "Preço não informado";
       const link = $(item).closest("a").attr("href") || "Link não disponível";
 
-      const imagemTag = $(item)
-        .closest(".olx-ad-card")
-        .find("img")
-        .attr("src") || "Imagem não disponível";
+      const imagemTag =
+        $(item).closest(".olx-ad-card").find("img").attr("src") ||
+        "Imagem não disponível";
 
-      anuncios.push({ Título: titulo, Preço: preco, Link: link, Imagem: imagemTag });
+      anuncios.push({
+        Título: titulo,
+        Preço: preco,
+        Link: link,
+        Imagem: imagemTag,
+      });
     });
 
     return anuncios;
