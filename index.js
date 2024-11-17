@@ -21,10 +21,10 @@ async function coletarAnunciosOLX(pesquisa, limite = 15) {
   const urlDefault = `https://www.olx.com.br/brasil?q=${encodeURIComponent(
     pesquisa
   )}`;
-  const urlEstados = `https://www.olx.com.br/estado-${encodeURIComponent}?q=${encodeURIComponent(
-    estado,
-    pesquisa
-  )}`;
+  //const urlEstados = `https://www.olx.com.br/estado-${encodeURIComponent}?q=${encodeURIComponent(
+  //estado,
+  //pesquisa
+  // )}`;
 
   const urlOLX = `https://www.olx.com.br/brasil?q=${encodeURIComponent(
     pesquisa

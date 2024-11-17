@@ -6,8 +6,13 @@ import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
 import { useQuery } from "@tanstack/react-query";
 import Produtos from "../components/produtos/Produtos";
+import Divider from "@mui/material/Divider";
 import { useState } from "react";
 import { axiosClient } from "../utils/axios";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
 
 interface Anuncio {
   Título: string;
@@ -91,48 +96,100 @@ const ResultsPage: React.FC = () => {
   const handleSearchSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     setSearchTerm(termoDeBusca); // Atualiza apenas o conteúdo abaixo do header
+    setSearchState(estado); // Atualiza o termo de busca efetivo
+  };
+  const [estado, setEstado] = React.useState("");
+  const [searchState, setSearchState] = React.useState(""); // termo de busca efetivo
+  const handleChange = (event: SelectChangeEvent) => {
+    setEstado(event.target.value as string);
   };
 
   return (
     <div className={classes.root}>
-        <div className={classes.logo}>
-          <h1
-            style={{
-              color: "black",
-              fontWeight: 100,
-              marginBottom: "-0.2rem",
-              fontSize: "2rem",
-            }}
-          >
-            Wide
-          </h1>
-          <h1
-            style={{
-              color: "black",
-              fontWeight: 100,
-              marginTop: "-0.2rem",
-              fontSize: "2rem",
-            }}
-          >
-            Search
-          </h1>
-        </div>
-        <Paper  
-          component="form"
-          className={classes.barradePesquisa}
-          onSubmit={handleSearchSubmit}
+      <div className={classes.logo}>
+        <h1
+          style={{
+            color: "black",
+            fontWeight: 100,
+            marginBottom: "-0.2rem",
+            fontSize: "2rem",
+          }}
         >
-          <InputBase
-            sx={{ ml: 1, flex: 1 }}
-            value={termoDeBusca}
-            onChange={(e) => setTermoDeBusca(e.target.value)}
-            placeholder="Digite sua busca..."
-            inputProps={{ "aria-label": "search" }}
-          />
-          <IconButton type="submit" aria-label="search" sx={{ p: "10px" }}>
-            <SearchIcon />
-          </IconButton>
-        </Paper>
+          Wide
+        </h1>
+        <h1
+          style={{
+            color: "black",
+            fontWeight: 100,
+            marginTop: "-0.2rem",
+            fontSize: "2rem",
+          }}
+        >
+          Search
+        </h1>
+      </div>
+      <Paper
+        component="form"
+        className={classes.barradePesquisa}
+        onSubmit={handleSearchSubmit}
+      >
+        <InputBase
+          sx={{ ml: 1, flex: 1 }}
+          value={termoDeBusca}
+          onChange={(e) => setTermoDeBusca(e.target.value)}
+          placeholder="Digite sua busca..."
+          inputProps={{ "aria-label": "search" }}
+        />
+        <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
+        <IconButton
+          type="submit"
+          aria-label="search"
+          sx={{ p: "0px", minWidth: "100px" }}
+        >
+          <FormControl fullWidth>
+            <InputLabel id="demo-simple-select-label">Brasil</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={estado}
+              label="Age"
+              onChange={handleChange}
+            >
+              <MenuItem value={0}>Brasil</MenuItem>
+              <MenuItem value={10}>GO</MenuItem>
+              <MenuItem value={20}>SP</MenuItem>
+              <MenuItem value={30}>MG</MenuItem>
+              <MenuItem value={40}>RJ</MenuItem>
+              <MenuItem value={50}>BA</MenuItem>
+              <MenuItem value={60}>RS</MenuItem>
+              <MenuItem value={70}>PR</MenuItem>
+              <MenuItem value={80}>PE</MenuItem>
+              <MenuItem value={90}>CE</MenuItem>
+              <MenuItem value={100}>PA</MenuItem>
+              <MenuItem value={110}>MA</MenuItem>
+              <MenuItem value={120}>SC</MenuItem>
+              <MenuItem value={130}>PB</MenuItem>
+              <MenuItem value={140}>ES</MenuItem>
+              <MenuItem value={150}>AM</MenuItem>
+              <MenuItem value={160}>AL</MenuItem>
+              <MenuItem value={170}>PI</MenuItem>
+              <MenuItem value={180}>RN</MenuItem>
+              <MenuItem value={190}>MT</MenuItem>
+              <MenuItem value={200}>DF</MenuItem>
+              <MenuItem value={210}>MS</MenuItem>
+              <MenuItem value={220}>SE</MenuItem>
+              <MenuItem value={230}>RO</MenuItem>
+              <MenuItem value={240}>TO</MenuItem>
+              <MenuItem value={250}>AC</MenuItem>
+              <MenuItem value={260}>AP</MenuItem>
+              <MenuItem value={270}>RR</MenuItem>
+            </Select>
+          </FormControl>
+        </IconButton>
+        <IconButton type="submit" aria-label="search" sx={{ p: "10px" }}>
+          <SearchIcon />
+        </IconButton>
+      </Paper>
 
       <div className={classes.divCards}>
         <div className={classes.divMap}>
