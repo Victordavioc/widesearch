@@ -4,7 +4,7 @@ const express = require("express");
 const cors = require("cors");
 
 const ZENROWS_API_URL = "https://api.zenrows.com/v1/";
-const ZENROWS_API_KEY = "0a6ac8447f8ae8073ded86e34d8763562976092f";
+const ZENROWS_API_KEY = "036beb0998ae46539cbb5012e0de1556dd545fe1";
 
 const userAgents = [
   "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:93.0) Gecko/20100101 Firefox/93.0",
