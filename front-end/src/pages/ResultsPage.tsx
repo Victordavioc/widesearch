@@ -15,6 +15,8 @@ import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import SkeletonProdutos from "../components/produtos/skeletonProdutos";
 
+import logo from '../logo.png'
+
 interface Anuncio {
   Título: string;
   Preço: string;
@@ -45,9 +47,7 @@ const useStyles = makeStyles(() => ({
     minHeight: "100vh",
   },
   logo: {
-    display: "flex",
-    justifyContent: "center",
-    flexDirection: "column",
+    width: "clamp(300px, 30vw, 500px)"
   },
   barradePesquisa: {
     padding: "2px 4px",
@@ -78,6 +78,12 @@ const useStyles = makeStyles(() => ({
     width: 300,
     height: 400,
   },
+  logocontainer:{
+    display: "flex",
+    alignItems: "center",
+    width: "100%",
+    padding: "2rem 1rem",
+  }
 }));
 
 const ResultsPage: React.FC = () => {
@@ -109,13 +115,8 @@ const ResultsPage: React.FC = () => {
 
   return (
     <div className={classes.root}>
-      <div className={classes.logo}>
-        <h1 style={{ color: "black", fontWeight: 100, fontSize: "2rem" }}>
-          Wide
-        </h1>
-        <h1 style={{ color: "black", fontWeight: 100, fontSize: "2rem" }}>
-          Search
-        </h1>
+      <div className={classes.logocontainer}>
+        <img src={logo} alt="" className={classes.logo}/>
       </div>
       <Paper
         component="form"
