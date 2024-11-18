@@ -13,7 +13,11 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
+<<<<<<< HEAD
 import SkeletonProdutos from "../components/produtos/skeletonProdutos";
+=======
+import logo from "../assets/logo.png";
+>>>>>>> arthur
 
 interface Anuncio {
   Título: string;
@@ -47,7 +51,8 @@ const useStyles = makeStyles(() => ({
   logo: {
     display: "flex",
     justifyContent: "center",
-    flexDirection: "column",
+    alignItems: "center",
+    maxWidth: "1500px",
   },
   barradePesquisa: {
     padding: "2px 4px",
@@ -110,12 +115,16 @@ const ResultsPage: React.FC = () => {
   return (
     <div className={classes.root}>
       <div className={classes.logo}>
+<<<<<<< HEAD
         <h1 style={{ color: "black", fontWeight: 100, fontSize: "2rem" }}>
           Wide
         </h1>
         <h1 style={{ color: "black", fontWeight: 100, fontSize: "2rem" }}>
           Search
         </h1>
+=======
+        <img src={logo} alt="Logo" style={{ width: "45%" }} />
+>>>>>>> arthur
       </div>
       <Paper
         component="form"
