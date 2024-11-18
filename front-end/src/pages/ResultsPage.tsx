@@ -53,8 +53,12 @@ const useStyles = makeStyles(() => ({
     padding: "2px 4px",
     display: "flex",
     alignItems: "center",
+    flexDirection: "column",
     width: "45%",
     maxWidth: "400px",
+    height: "100px",
+    gap: "1rem",
+    textAlign: "center",
   },
   divCards: {
     display: "flex",
@@ -84,6 +88,14 @@ const useStyles = makeStyles(() => ({
     justifyContent: "center",
     width: "100%",
     padding: "2rem 1rem",
+  },
+  button:{
+    width: "100%",
+    backgroundColor: "rgb(65, 154, 225)",
+    color: "white",
+    border: "none",
+    borderRadius: "5px",
+    height: "40px",
   }
 }));
 
@@ -119,23 +131,18 @@ const ResultsPage: React.FC = () => {
       <div className={classes.logocontainer}>
         <img src={logo} alt="" className={classes.logo}/>
       </div>
-      <Paper
-        component="form"
-        className={classes.barradePesquisa}
-        onSubmit={handleSearchSubmit}
-      >
-        <InputBase
-          sx={{ ml: 1, flex: 1 }}
-          value={termoDeBusca}
-          onChange={(e) => setTermoDeBusca(e.target.value)}
-          placeholder="Digite sua busca..."
-          inputProps={{ "aria-label": "search" }}
-        />
-        <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
-        <IconButton type="submit" aria-label="search" sx={{ p: "10px" }}>
-          <SearchIcon />
-        </IconButton>
-      </Paper>
+      <form
+    className={classes.barradePesquisa}
+    onSubmit={handleSearchSubmit}
+  >
+    <InputBase
+      sx={{  border: '1px solid #ced4da', borderRadius: '5px', width: '100%', height: '40px', padding: '0 10px' }}
+      value={termoDeBusca}
+      onChange={(e) => setTermoDeBusca(e.target.value)}
+      placeholder="Digite sua busca"
+    />
+    <button type="submit" className={classes.button}>Pesquisar</button>
+  </form>
 
       <div className={classes.divCards}>
         <div className={classes.divMap}>
