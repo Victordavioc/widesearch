@@ -13,7 +13,7 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
-import Skeleton from "@mui/material/Skeleton"; 
+import SkeletonProdutos from "../components/produtos/skeletonProdutos";
 
 interface Anuncio {
   Título: string;
@@ -86,9 +86,11 @@ const ResultsPage: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [estado, setEstado] = React.useState("");
   const [searchState, setSearchState] = React.useState("");
+  
   const handleChange = (event: SelectChangeEvent) => {
     setEstado(event.target.value as string);
   };
+
   const {
     data: anuncios = [],
     isLoading,
@@ -135,26 +137,24 @@ const ResultsPage: React.FC = () => {
 
       <div className={classes.divCards}>
         <div className={classes.divMap}>
-          {isLoading
-            ? Array.from({ length: 15 }).map((_, index) => (
-                <Skeleton
-                  key={index}
-                  variant="rectangular"
-                  className={classes.cardSkeleton}
-                />
-              ))
-            : error
-            ? <p>Erro ao carregar os dados</p>
-            : anuncios.map((anuncio, index) => (
-                <Produtos
-                  key={index}
-                  id={index}
-                  name={anuncio.Título}
-                  price={anuncio.Preço}
-                  image_url={anuncio.Imagem}
-                  link={anuncio.Link}
-                />
-              ))}
+          {isLoading ? (
+            Array.from({ length: 8 }).map((_, index) => (
+              <SkeletonProdutos key={index} />
+            ))
+          ) : error ? (
+            <p>Erro ao carregar os dados</p>
+          ) : (
+            anuncios.map((anuncio, index) => (
+              <Produtos
+                key={index}
+                id={index}
+                name={anuncio.Título}
+                price={anuncio.Preço}
+                image_url={anuncio.Imagem}
+                link={anuncio.Link}
+              />
+            ))
+          )}
         </div>
       </div>
     </div>
