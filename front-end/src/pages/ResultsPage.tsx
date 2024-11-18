@@ -22,11 +22,18 @@ interface Anuncio {
 }
 
 // Função de busca usando Axios
-const fetchAnuncios = async (produto: string): Promise<Anuncio[]> => {
-  // Substitua pela sua constante de chave de token
-  const response = await axiosClient.get(
-    `/anuncios?pesquisa=${encodeURIComponent(produto)}`
-  );
+const fetchAnuncios = async (
+  produto: string,
+  estado?: string
+): Promise<Anuncio[]> => {
+  // Monta a URL com ou sem o estado, dependendo da presença do parâmetro
+  const query = estado
+    ? `/anuncios?pesquisa=${encodeURIComponent(
+        produto
+      )}&estado=${encodeURIComponent(estado)}`
+    : `/anuncios?pesquisa=${encodeURIComponent(produto)}`;
+
+  const response = await axiosClient.get(query);
   return response.data; // Retorna os dados diretamente
 };
 
@@ -36,6 +43,7 @@ const useStyles = makeStyles(() => ({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
+    height: "100vh",
   },
   header: {
     display: "flex",
@@ -83,13 +91,18 @@ const ResultsPage: React.FC = () => {
   const classes = useStyles();
   const [termoDeBusca, setTermoDeBusca] = useState("");
   const [searchTerm, setSearchTerm] = useState(""); // termo de busca efetivo
+  const [estado, setEstado] = React.useState("");
+  const [searchState, setSearchState] = React.useState(""); // termo de busca efetivo
+  const handleChange = (event: SelectChangeEvent) => {
+    setEstado(event.target.value as string);
+  };
   const {
     data: anuncios = [],
     isLoading,
     error,
   } = useQuery<Anuncio[], Error>({
-    queryKey: ["anuncios", searchTerm],
-    queryFn: () => fetchAnuncios(searchTerm || ""), // Fornece uma string vazia se `termoDeBusca` for null
+    queryKey: ["anuncios", searchTerm, searchState],
+    queryFn: () => fetchAnuncios(searchTerm || "", searchState), // Fornece uma string vazia se `termoDeBusca` for null
     enabled: !!searchTerm, // Essa configuração só é aplicada se termoDeBusca não for vazio
   });
 
@@ -97,11 +110,6 @@ const ResultsPage: React.FC = () => {
     event.preventDefault();
     setSearchTerm(termoDeBusca); // Atualiza apenas o conteúdo abaixo do header
     setSearchState(estado); // Atualiza o termo de busca efetivo
-  };
-  const [estado, setEstado] = React.useState("");
-  const [searchState, setSearchState] = React.useState(""); // termo de busca efetivo
-  const handleChange = (event: SelectChangeEvent) => {
-    setEstado(event.target.value as string);
   };
 
   return (
@@ -155,34 +163,34 @@ const ResultsPage: React.FC = () => {
               label="Age"
               onChange={handleChange}
             >
-              <MenuItem value={0}>Brasil</MenuItem>
-              <MenuItem value={10}>GO</MenuItem>
-              <MenuItem value={20}>SP</MenuItem>
-              <MenuItem value={30}>MG</MenuItem>
-              <MenuItem value={40}>RJ</MenuItem>
-              <MenuItem value={50}>BA</MenuItem>
-              <MenuItem value={60}>RS</MenuItem>
-              <MenuItem value={70}>PR</MenuItem>
-              <MenuItem value={80}>PE</MenuItem>
-              <MenuItem value={90}>CE</MenuItem>
-              <MenuItem value={100}>PA</MenuItem>
-              <MenuItem value={110}>MA</MenuItem>
-              <MenuItem value={120}>SC</MenuItem>
-              <MenuItem value={130}>PB</MenuItem>
-              <MenuItem value={140}>ES</MenuItem>
-              <MenuItem value={150}>AM</MenuItem>
-              <MenuItem value={160}>AL</MenuItem>
-              <MenuItem value={170}>PI</MenuItem>
-              <MenuItem value={180}>RN</MenuItem>
-              <MenuItem value={190}>MT</MenuItem>
-              <MenuItem value={200}>DF</MenuItem>
-              <MenuItem value={210}>MS</MenuItem>
-              <MenuItem value={220}>SE</MenuItem>
-              <MenuItem value={230}>RO</MenuItem>
-              <MenuItem value={240}>TO</MenuItem>
-              <MenuItem value={250}>AC</MenuItem>
-              <MenuItem value={260}>AP</MenuItem>
-              <MenuItem value={270}>RR</MenuItem>
+              <MenuItem value={""}>Brasil</MenuItem>
+              <MenuItem value={"go"}>GO</MenuItem>
+              <MenuItem value={"sp"}>SP</MenuItem>
+              <MenuItem value={"mg"}>MG</MenuItem>
+              <MenuItem value={"rj"}>RJ</MenuItem>
+              <MenuItem value={"ba"}>BA</MenuItem>
+              <MenuItem value={"rs"}>RS</MenuItem>
+              <MenuItem value={"pr"}>PR</MenuItem>
+              <MenuItem value={"pe"}>PE</MenuItem>
+              <MenuItem value={"ce"}>CE</MenuItem>
+              <MenuItem value={"pa"}>PA</MenuItem>
+              <MenuItem value={"ma"}>MA</MenuItem>
+              <MenuItem value={"sc"}>SC</MenuItem>
+              <MenuItem value={"pb"}>PB</MenuItem>
+              <MenuItem value={"es"}>ES</MenuItem>
+              <MenuItem value={"am"}>AM</MenuItem>
+              <MenuItem value={"al"}>AL</MenuItem>
+              <MenuItem value={"pi"}>PI</MenuItem>
+              <MenuItem value={"rn"}>RN</MenuItem>
+              <MenuItem value={"mt"}>MT</MenuItem>
+              <MenuItem value={"df"}>DF</MenuItem>
+              <MenuItem value={"ms"}>MS</MenuItem>
+              <MenuItem value={"se"}>SE</MenuItem>
+              <MenuItem value={"ro"}>RO</MenuItem>
+              <MenuItem value={"to"}>TO</MenuItem>
+              <MenuItem value={"ac"}>AC</MenuItem>
+              <MenuItem value={"ap"}>AP</MenuItem>
+              <MenuItem value={"rr"}>RR</MenuItem>
             </Select>
           </FormControl>
         </IconButton>
