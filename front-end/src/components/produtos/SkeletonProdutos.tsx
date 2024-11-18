@@ -36,6 +36,7 @@ const useStyles = makeStyles(() => ({
   divName: {
     padding: "10px",
     display: "flex",
+    flexDirection:"column",
     width: "100%",
     alignItems: "start",
     justifyContent: "start",
@@ -98,9 +99,11 @@ const SkeletonProdutos = () => {
       <Skeleton variant="rectangular" width={248} height={200}/>
       <div className={classes.divName}>
         <Skeleton variant="text" width={240}/>
+        <Skeleton variant="text" width={240}/>
+        <Skeleton variant="text" width={120}/>
       </div>
       <div className={classes.divPrice}>
-        <Skeleton variant="text" width={50}/>
+        <Skeleton variant="text" width={135}/>
       </div>
       <div >
 

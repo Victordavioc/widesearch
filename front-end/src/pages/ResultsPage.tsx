@@ -24,10 +24,12 @@ interface Anuncio {
   Imagem: string;
 }
 
+// Função de busca usando Axios
 const fetchAnuncios = async (
   produto: string,
   estado?: string
 ): Promise<Anuncio[]> => {
+  // Monta a URL com ou sem o estado, dependendo da presença do parâmetro
   const query = estado
     ? `/anuncios?pesquisa=${encodeURIComponent(
         produto
@@ -35,7 +37,7 @@ const fetchAnuncios = async (
     : `/anuncios?pesquisa=${encodeURIComponent(produto)}`;
 
   const response = await axiosClient.get(query);
-  return response.data;
+  return response.data; // Retorna os dados diretamente
 };
 import styled from 'styled-components';
 
@@ -63,8 +65,19 @@ const useStyles = makeStyles(() => ({
     alignItems: "center",
     minHeight: "100vh",
   },
+  header: {
+    display: "flex",
+    height: "120px",
+    width: "100%",
+    background: "#4454ff",
+    justifyContent: "center",
+    gap: "6%",
+    alignItems: "center",
+  },
   logo: {
-    width: "clamp(300px, 30vw, 500px)"
+    display: "flex",
+    justifyContent: "center",
+    flexDirection: "column",
   },
   barradePesquisa: {
     padding: "2px 4px",
@@ -90,120 +103,70 @@ const useStyles = makeStyles(() => ({
   },
   divMap: {
     display: "grid",
-    gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
+    gridTemplateColumns: "repeat(auto-fill, minmax(300px, 0fr))",
     gap: "2rem",
     marginTop: "1rem",
     maxWidth: "100%",
   },
   cardSkeleton: {
     width: 300,
-    height: 401,
+    height: 400,
   },
-  logocontainer:{
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    width: "100%",
-    padding: "2rem 1rem",
-  },
-  engine: {
-    width: "50px",
-    marginLeft: "1rem"
-  },
-  engineContainer: {
-    display: "flex"
-  }
 }));
 
 const ResultsPage: React.FC = () => {
+  // Estado para gerenciar o termo de busca
   const classes = useStyles();
   const [termoDeBusca, setTermoDeBusca] = useState("");
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState(""); // termo de busca efetivo
   const [estado, setEstado] = React.useState("");
-  const [searchState, setSearchState] = React.useState("");
-  
+  const [searchState, setSearchState] = React.useState(""); // termo de busca efetivo
   const handleChange = (event: SelectChangeEvent) => {
     setEstado(event.target.value as string);
   };
-
   const {
     data: anuncios = [],
     isLoading,
     error,
   } = useQuery<Anuncio[], Error>({
     queryKey: ["anuncios", searchTerm, searchState],
-    queryFn: () => fetchAnuncios(searchTerm || "", searchState),
-    enabled: !!searchTerm,
+    queryFn: () => fetchAnuncios(searchTerm || "", searchState), // Fornece uma string vazia se `termoDeBusca` for null
+    enabled: !!searchTerm, // Essa configuração só é aplicada se termoDeBusca não for vazio
   });
 
   const handleSearchSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    setSearchTerm(termoDeBusca);
-    setSearchState(estado);
+    setSearchTerm(termoDeBusca); // Atualiza apenas o conteúdo abaixo do header
+    setSearchState(estado); // Atualiza o termo de busca efetivo
   };
 
   return (
     <div className={classes.root}>
-      <div className={classes.logocontainer}>
-        <img src={logo} alt="" className={classes.logo}/>
-        
+      <div className={classes.logo}>
+        <h1 style={{ color: "black", fontWeight: 100, fontSize: "2rem" }}>
+          Wide
+        </h1>
+        <h1 style={{ color: "black", fontWeight: 100, fontSize: "2rem" }}>
+          Search
+        </h1>
       </div>
-      <div className={classes.engineContainer}>
-      <p>pesquisando anúncios da plataforma</p><img src={olxLogo} alt="" className={classes.engine}/>
-      </div>
-      <form
-    className={classes.barradePesquisa}
-    onSubmit={handleSearchSubmit}
-  >
-    <InputBase
-      sx={{  border: '1px solid #ced4da', borderRadius: '5px', width: '100%', height: '60px', padding: '0 10px' }}
-      value={termoDeBusca}
-      onChange={(e) => setTermoDeBusca(e.target.value)}
-      placeholder="Digite sua busca"
-    />
-
-      <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label">Brasil</InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          value={estado}
-          label="Age"
-          onChange={handleChange}
-        >
-          <MenuItem value={""}>Brasil</MenuItem>
-          <MenuItem value={"go"}>GO</MenuItem>
-          <MenuItem value={"sp"}>SP</MenuItem>
-          <MenuItem value={"mg"}>MG</MenuItem>
-          <MenuItem value={"rj"}>RJ</MenuItem>
-          <MenuItem value={"ba"}>BA</MenuItem>
-          <MenuItem value={"rs"}>RS</MenuItem>
-          <MenuItem value={"pr"}>PR</MenuItem>
-          <MenuItem value={"pe"}>PE</MenuItem>
-          <MenuItem value={"ce"}>CE</MenuItem>
-          <MenuItem value={"pa"}>PA</MenuItem>
-          <MenuItem value={"ma"}>MA</MenuItem>
-          <MenuItem value={"sc"}>SC</MenuItem>
-          <MenuItem value={"pb"}>PB</MenuItem>
-          <MenuItem value={"es"}>ES</MenuItem>
-          <MenuItem value={"am"}>AM</MenuItem>
-          <MenuItem value={"al"}>AL</MenuItem>
-          <MenuItem value={"pi"}>PI</MenuItem>
-          <MenuItem value={"rn"}>RN</MenuItem>
-          <MenuItem value={"mt"}>MT</MenuItem>
-          <MenuItem value={"df"}>DF</MenuItem>
-          <MenuItem value={"ms"}>MS</MenuItem>
-          <MenuItem value={"se"}>SE</MenuItem>
-          <MenuItem value={"ro"}>RO</MenuItem>
-          <MenuItem value={"to"}>TO</MenuItem>
-          <MenuItem value={"ac"}>AC</MenuItem>
-          <MenuItem value={"ap"}>AP</MenuItem>
-          <MenuItem value={"rr"}>RR</MenuItem>
-        </Select>
-      </FormControl>
-
-    <Button type="submit" >Pesquisar</Button>
-  </form >
+      <Paper
+        component="form"
+        className={classes.barradePesquisa}
+        onSubmit={handleSearchSubmit}
+      >
+        <InputBase
+          sx={{ ml: 1, flex: 1 }}
+          value={termoDeBusca}
+          onChange={(e) => setTermoDeBusca(e.target.value)}
+          placeholder="Digite sua busca..."
+          inputProps={{ "aria-label": "search" }}
+        />
+        <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
+        <IconButton type="submit" aria-label="search" sx={{ p: "10px" }}>
+          <SearchIcon />
+        </IconButton>
+      </Paper>
 
       <div className={classes.divCards}>
         <div className={classes.divMap}>
@@ -212,7 +175,7 @@ const ResultsPage: React.FC = () => {
               <SkeletonProdutos key={index} />
             ))
           ) : error ? (
-            <p>Erro ao carregar os dados</p>
+            <p>Erro ao carregar os dados: {}</p>
           ) : (
             anuncios.map((anuncio, index) => (
               <Produtos
