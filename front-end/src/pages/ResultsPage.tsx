@@ -81,6 +81,7 @@ const useStyles = makeStyles(() => ({
   logocontainer:{
     display: "flex",
     alignItems: "center",
+    justifyContent: "center",
     width: "100%",
     padding: "2rem 1rem",
   }
