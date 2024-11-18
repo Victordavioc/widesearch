@@ -13,11 +13,8 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
-<<<<<<< HEAD
-import SkeletonProdutos from "../components/produtos/skeletonProdutos";
-=======
 import logo from "../assets/logo.png";
->>>>>>> arthur
+import SkeletonProdutos from "../components/produtos/SkeletonProdutos";
 
 interface Anuncio {
   Título: string;
@@ -26,10 +23,12 @@ interface Anuncio {
   Imagem: string;
 }
 
+// Função de busca usando Axios
 const fetchAnuncios = async (
   produto: string,
   estado?: string
 ): Promise<Anuncio[]> => {
+  // Monta a URL com ou sem o estado, dependendo da presença do parâmetro
   const query = estado
     ? `/anuncios?pesquisa=${encodeURIComponent(
         produto
@@ -37,7 +36,7 @@ const fetchAnuncios = async (
     : `/anuncios?pesquisa=${encodeURIComponent(produto)}`;
 
   const response = await axiosClient.get(query);
-  return response.data;
+  return response.data; // Retorna os dados diretamente
 };
 
 const useStyles = makeStyles(() => ({
@@ -47,6 +46,15 @@ const useStyles = makeStyles(() => ({
     justifyContent: "center",
     alignItems: "center",
     minHeight: "100vh",
+  },
+  header: {
+    display: "flex",
+    height: "120px",
+    width: "100%",
+    background: "#4454ff",
+    justifyContent: "center",
+    gap: "6%",
+    alignItems: "center",
   },
   logo: {
     display: "flex",
@@ -74,57 +82,43 @@ const useStyles = makeStyles(() => ({
   },
   divMap: {
     display: "grid",
-    gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
+    gridTemplateColumns: "repeat(auto-fill, minmax(300px, 0fr))",
     gap: "2rem",
     marginTop: "1rem",
     maxWidth: "100%",
   },
-  cardSkeleton: {
-    width: 300,
-    height: 400,
-  },
 }));
 
 const ResultsPage: React.FC = () => {
+  // Estado para gerenciar o termo de busca
   const classes = useStyles();
   const [termoDeBusca, setTermoDeBusca] = useState("");
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState(""); // termo de busca efetivo
   const [estado, setEstado] = React.useState("");
-  const [searchState, setSearchState] = React.useState("");
-  
+  const [searchState, setSearchState] = React.useState(""); // termo de busca efetivo
   const handleChange = (event: SelectChangeEvent) => {
     setEstado(event.target.value as string);
   };
-
   const {
     data: anuncios = [],
     isLoading,
     error,
   } = useQuery<Anuncio[], Error>({
     queryKey: ["anuncios", searchTerm, searchState],
-    queryFn: () => fetchAnuncios(searchTerm || "", searchState),
-    enabled: !!searchTerm,
+    queryFn: () => fetchAnuncios(searchTerm || "", searchState), // Fornece uma string vazia se `termoDeBusca` for null
+    enabled: !!searchTerm, // Essa configuração só é aplicada se termoDeBusca não for vazio
   });
 
   const handleSearchSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    setSearchTerm(termoDeBusca);
-    setSearchState(estado);
+    setSearchTerm(termoDeBusca); // Atualiza apenas o conteúdo abaixo do header
+    setSearchState(estado); // Atualiza o termo de busca efetivo
   };
 
   return (
     <div className={classes.root}>
       <div className={classes.logo}>
-<<<<<<< HEAD
-        <h1 style={{ color: "black", fontWeight: 100, fontSize: "2rem" }}>
-          Wide
-        </h1>
-        <h1 style={{ color: "black", fontWeight: 100, fontSize: "2rem" }}>
-          Search
-        </h1>
-=======
         <img src={logo} alt="Logo" style={{ width: "45%" }} />
->>>>>>> arthur
       </div>
       <Paper
         component="form"
@@ -139,6 +133,51 @@ const ResultsPage: React.FC = () => {
           inputProps={{ "aria-label": "search" }}
         />
         <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
+        <IconButton
+          type="submit"
+          aria-label="search"
+          sx={{ p: "0px", minWidth: "100px" }}
+        >
+          <FormControl fullWidth>
+            <InputLabel id="demo-simple-select-label">Brasil</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={estado}
+              label="Age"
+              onChange={handleChange}
+            >
+              <MenuItem value={""}>Brasil</MenuItem>
+              <MenuItem value={"go"}>GO</MenuItem>
+              <MenuItem value={"sp"}>SP</MenuItem>
+              <MenuItem value={"mg"}>MG</MenuItem>
+              <MenuItem value={"rj"}>RJ</MenuItem>
+              <MenuItem value={"ba"}>BA</MenuItem>
+              <MenuItem value={"rs"}>RS</MenuItem>
+              <MenuItem value={"pr"}>PR</MenuItem>
+              <MenuItem value={"pe"}>PE</MenuItem>
+              <MenuItem value={"ce"}>CE</MenuItem>
+              <MenuItem value={"pa"}>PA</MenuItem>
+              <MenuItem value={"ma"}>MA</MenuItem>
+              <MenuItem value={"sc"}>SC</MenuItem>
+              <MenuItem value={"pb"}>PB</MenuItem>
+              <MenuItem value={"es"}>ES</MenuItem>
+              <MenuItem value={"am"}>AM</MenuItem>
+              <MenuItem value={"al"}>AL</MenuItem>
+              <MenuItem value={"pi"}>PI</MenuItem>
+              <MenuItem value={"rn"}>RN</MenuItem>
+              <MenuItem value={"mt"}>MT</MenuItem>
+              <MenuItem value={"df"}>DF</MenuItem>
+              <MenuItem value={"ms"}>MS</MenuItem>
+              <MenuItem value={"se"}>SE</MenuItem>
+              <MenuItem value={"ro"}>RO</MenuItem>
+              <MenuItem value={"to"}>TO</MenuItem>
+              <MenuItem value={"ac"}>AC</MenuItem>
+              <MenuItem value={"ap"}>AP</MenuItem>
+              <MenuItem value={"rr"}>RR</MenuItem>
+            </Select>
+          </FormControl>
+        </IconButton>
         <IconButton type="submit" aria-label="search" sx={{ p: "10px" }}>
           <SearchIcon />
         </IconButton>
@@ -151,7 +190,7 @@ const ResultsPage: React.FC = () => {
               <SkeletonProdutos key={index} />
             ))
           ) : error ? (
-            <p>Erro ao carregar os dados</p>
+            <p>Erro ao carregar os dados: {}</p>
           ) : (
             anuncios.map((anuncio, index) => (
               <Produtos
