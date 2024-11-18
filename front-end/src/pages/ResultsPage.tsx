@@ -47,15 +47,6 @@ const useStyles = makeStyles(() => ({
     alignItems: "center",
     minHeight: "100vh",
   },
-  header: {
-    display: "flex",
-    height: "120px",
-    width: "100%",
-    background: "#4454ff",
-    justifyContent: "center",
-    gap: "6%",
-    alignItems: "center",
-  },
   logo: {
     display: "flex",
     justifyContent: "center",
