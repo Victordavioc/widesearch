@@ -4,7 +4,7 @@ const express = require("express");
 const cors = require("cors");
 
 const ZENROWS_API_URL = "https://api.zenrows.com/v1/";
-const ZENROWS_API_KEY = "a945dad5191652e8d2b89300f664f00f41e3d10c";
+const ZENROWS_API_KEY = "0a6ac8447f8ae8073ded86e34d8763562976092f";
 
 const userAgents = [
   "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:93.0) Gecko/20100101 Firefox/93.0",
@@ -17,18 +17,12 @@ const port = 3000;
 
 app.use(cors());
 
-async function coletarAnunciosOLX(pesquisa, limite = 15) {
-  const urlDefault = `https://www.olx.com.br/brasil?q=${encodeURIComponent(
-    pesquisa
-  )}`;
-  //const urlEstados = `https://www.olx.com.br/estado-${encodeURIComponent}?q=${encodeURIComponent(
-  //estado,
-  //pesquisa
-  // )}`;
-
-  const urlOLX = `https://www.olx.com.br/brasil?q=${encodeURIComponent(
-    pesquisa
-  )}`;
+async function coletarAnunciosOLX(pesquisa, estado = null, limite = 15) {
+  const url = estado
+    ? `https://www.olx.com.br/estado-${encodeURIComponent(
+        estado
+      )}?q=${encodeURIComponent(pesquisa)}`
+    : `https://www.olx.com.br/brasil?q=${encodeURIComponent(pesquisa)}`;
 
   const headers = {
     "User-Agent": userAgents[Math.floor(Math.random() * userAgents.length)],
@@ -37,7 +31,7 @@ async function coletarAnunciosOLX(pesquisa, limite = 15) {
   };
 
   const params = {
-    url: urlOLX,
+    url: url,
     apikey: ZENROWS_API_KEY,
     js_render: "true",
   };
@@ -86,7 +80,7 @@ async function coletarAnunciosOLX(pesquisa, limite = 15) {
 }
 
 app.get("/api/anuncios", async (req, res) => {
-  const { pesquisa } = req.query;
+  const { pesquisa, estado } = req.query;
 
   if (!pesquisa) {
     return res
@@ -94,7 +88,7 @@ app.get("/api/anuncios", async (req, res) => {
       .json({ error: "O parâmetro 'pesquisa' é obrigatório." });
   }
 
-  const anuncios = await coletarAnunciosOLX(pesquisa);
+  const anuncios = await coletarAnunciosOLX(pesquisa, estado);
 
   if (!anuncios) {
     return res.status(500).json({ error: "Erro ao coletar os anúncios." });

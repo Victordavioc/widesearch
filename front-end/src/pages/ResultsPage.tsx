@@ -43,7 +43,7 @@ const useStyles = makeStyles(() => ({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    height: "100vh",
+    minHeight: "100vh",
   },
   header: {
     display: "flex",
