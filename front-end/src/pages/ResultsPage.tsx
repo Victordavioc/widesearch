@@ -141,6 +141,53 @@ const ResultsPage: React.FC = () => {
       onChange={(e) => setTermoDeBusca(e.target.value)}
       placeholder="Digite sua busca"
     />
+
+    <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
+    <IconButton
+      type="submit"
+      aria-label="search"
+      sx={{ p: "0px", minWidth: "100px" }}
+    >
+      <FormControl fullWidth>
+        <InputLabel id="demo-simple-select-label">Brasil</InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          value={estado}
+          label="Age"
+          onChange={handleChange}
+        >
+          <MenuItem value={""}>Brasil</MenuItem>
+          <MenuItem value={"go"}>GO</MenuItem>
+          <MenuItem value={"sp"}>SP</MenuItem>
+          <MenuItem value={"mg"}>MG</MenuItem>
+          <MenuItem value={"rj"}>RJ</MenuItem>
+          <MenuItem value={"ba"}>BA</MenuItem>
+          <MenuItem value={"rs"}>RS</MenuItem>
+          <MenuItem value={"pr"}>PR</MenuItem>
+          <MenuItem value={"pe"}>PE</MenuItem>
+          <MenuItem value={"ce"}>CE</MenuItem>
+          <MenuItem value={"pa"}>PA</MenuItem>
+          <MenuItem value={"ma"}>MA</MenuItem>
+          <MenuItem value={"sc"}>SC</MenuItem>
+          <MenuItem value={"pb"}>PB</MenuItem>
+          <MenuItem value={"es"}>ES</MenuItem>
+          <MenuItem value={"am"}>AM</MenuItem>
+          <MenuItem value={"al"}>AL</MenuItem>
+          <MenuItem value={"pi"}>PI</MenuItem>
+          <MenuItem value={"rn"}>RN</MenuItem>
+          <MenuItem value={"mt"}>MT</MenuItem>
+          <MenuItem value={"df"}>DF</MenuItem>
+          <MenuItem value={"ms"}>MS</MenuItem>
+          <MenuItem value={"se"}>SE</MenuItem>
+          <MenuItem value={"ro"}>RO</MenuItem>
+          <MenuItem value={"to"}>TO</MenuItem>
+          <MenuItem value={"ac"}>AC</MenuItem>
+          <MenuItem value={"ap"}>AP</MenuItem>
+          <MenuItem value={"rr"}>RR</MenuItem>
+        </Select>
+      </FormControl>
+    </IconButton>
     <button type="submit" className={classes.button}>Pesquisar</button>
   </form>
 
