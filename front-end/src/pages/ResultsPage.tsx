@@ -97,7 +97,7 @@ const useStyles = makeStyles(() => ({
   },
   cardSkeleton: {
     width: 300,
-    height: 400,
+    height: 401,
   },
   logocontainer:{
     display: "flex",
