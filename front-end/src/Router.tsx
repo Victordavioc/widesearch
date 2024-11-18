@@ -1,5 +1,4 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
-import SearchPage from "./pages/SearchPage";
 import ResultsPage from "./pages/ResultsPage";
 
 const router = createBrowserRouter([
@@ -8,11 +7,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "",
-        element: <Navigate replace to="/surch" />,
-      },
-      {
-        path: "surch",
-        element: <SearchPage />,
+        element: <Navigate replace to="/results" />,
       },
       {
         path: "results",
