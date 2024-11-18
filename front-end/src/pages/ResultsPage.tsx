@@ -13,8 +13,9 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
-import logo from "../assets/logo.png";
-import SkeletonProdutos from "../components/produtos/SkeletonProdutos";
+import SkeletonProdutos from "../components/produtos/skeletonProdutos";
+import olxLogo from "../olx-logo.svg"
+import logo from '../logo.png'
 
 interface Anuncio {
   Título: string;
@@ -38,27 +39,47 @@ const fetchAnuncios = async (
   const response = await axiosClient.get(query);
   return response.data; // Retorna os dados diretamente
 };
+import styled from 'styled-components';
+
+const Button = styled.button`
+  width: 100%;
+  background-color: rgb(65, 154, 225);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  height: 50px;
+  transition: 0.3s;
+  &:hover {
+    cursor: pointer;
+    opacity: 0.8;
+    transition: 0.3s;
+
+  }
+`;
 
 const useStyles = makeStyles(() => ({
   root: {
     display: "flex",
     flexDirection: "column",
-    justifyContent: "center",
+    justifyContent: "space-evenly",
     alignItems: "center",
     minHeight: "100vh",
   },
   logo: {
     display: "flex",
     justifyContent: "center",
-    alignItems: "center",
-    maxWidth: "1500px",
+    flexDirection: "column",
   },
   barradePesquisa: {
     padding: "2px 4px",
     display: "flex",
-    alignItems: "center",
+    alignItems: "space",
+    justifyContent: "space-between",
+    flexDirection: "column",
     width: "45%",
     maxWidth: "400px",
+    height: "30vh",
+    textAlign: "center",
   },
   divCards: {
     display: "flex",
@@ -77,6 +98,10 @@ const useStyles = makeStyles(() => ({
     gap: "2rem",
     marginTop: "1rem",
     maxWidth: "100%",
+  },
+  cardSkeleton: {
+    width: 300,
+    height: 400,
   },
 }));
 
@@ -109,7 +134,12 @@ const ResultsPage: React.FC = () => {
   return (
     <div className={classes.root}>
       <div className={classes.logo}>
-        <img src={logo} alt="Logo" style={{ width: "45%" }} />
+        <h1 style={{ color: "black", fontWeight: 100, fontSize: "2rem" }}>
+          Wide
+        </h1>
+        <h1 style={{ color: "black", fontWeight: 100, fontSize: "2rem" }}>
+          Search
+        </h1>
       </div>
       <Paper
         component="form"
@@ -124,51 +154,6 @@ const ResultsPage: React.FC = () => {
           inputProps={{ "aria-label": "search" }}
         />
         <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
-        <IconButton
-          type="submit"
-          aria-label="search"
-          sx={{ p: "0px", minWidth: "100px" }}
-        >
-          <FormControl fullWidth>
-            <InputLabel id="demo-simple-select-label">Brasil</InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={estado}
-              label="Age"
-              onChange={handleChange}
-            >
-              <MenuItem value={""}>Brasil</MenuItem>
-              <MenuItem value={"go"}>GO</MenuItem>
-              <MenuItem value={"sp"}>SP</MenuItem>
-              <MenuItem value={"mg"}>MG</MenuItem>
-              <MenuItem value={"rj"}>RJ</MenuItem>
-              <MenuItem value={"ba"}>BA</MenuItem>
-              <MenuItem value={"rs"}>RS</MenuItem>
-              <MenuItem value={"pr"}>PR</MenuItem>
-              <MenuItem value={"pe"}>PE</MenuItem>
-              <MenuItem value={"ce"}>CE</MenuItem>
-              <MenuItem value={"pa"}>PA</MenuItem>
-              <MenuItem value={"ma"}>MA</MenuItem>
-              <MenuItem value={"sc"}>SC</MenuItem>
-              <MenuItem value={"pb"}>PB</MenuItem>
-              <MenuItem value={"es"}>ES</MenuItem>
-              <MenuItem value={"am"}>AM</MenuItem>
-              <MenuItem value={"al"}>AL</MenuItem>
-              <MenuItem value={"pi"}>PI</MenuItem>
-              <MenuItem value={"rn"}>RN</MenuItem>
-              <MenuItem value={"mt"}>MT</MenuItem>
-              <MenuItem value={"df"}>DF</MenuItem>
-              <MenuItem value={"ms"}>MS</MenuItem>
-              <MenuItem value={"se"}>SE</MenuItem>
-              <MenuItem value={"ro"}>RO</MenuItem>
-              <MenuItem value={"to"}>TO</MenuItem>
-              <MenuItem value={"ac"}>AC</MenuItem>
-              <MenuItem value={"ap"}>AP</MenuItem>
-              <MenuItem value={"rr"}>RR</MenuItem>
-            </Select>
-          </FormControl>
-        </IconButton>
         <IconButton type="submit" aria-label="search" sx={{ p: "10px" }}>
           <SearchIcon />
         </IconButton>
@@ -190,7 +175,7 @@ const ResultsPage: React.FC = () => {
                 name={anuncio.Título}
                 price={anuncio.Preço}
                 image_url={anuncio.Imagem}
-                link={anuncio.Link}
+                link={anuncio.Link} 
               />
             ))
           )}
