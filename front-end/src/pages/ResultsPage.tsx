@@ -13,7 +13,7 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
-
+import logo from '../logo.png'
 interface Anuncio {
   Título: string;
   Preço: string;
@@ -55,9 +55,7 @@ const useStyles = makeStyles(() => ({
     alignItems: "center",
   },
   logo: {
-    display: "flex",
-    justifyContent: "center",
-    flexDirection: "column",
+    width: 'clamp(300px, 30vw, 500px)'
   },
   barradePesquisa: {
     padding: "2px 4px",
@@ -114,28 +112,8 @@ const ResultsPage: React.FC = () => {
 
   return (
     <div className={classes.root}>
-      <div className={classes.logo}>
-        <h1
-          style={{
-            color: "black",
-            fontWeight: 100,
-            marginBottom: "-0.2rem",
-            fontSize: "2rem",
-          }}
-        >
-          Wide
-        </h1>
-        <h1
-          style={{
-            color: "black",
-            fontWeight: 100,
-            marginTop: "-0.2rem",
-            fontSize: "2rem",
-          }}
-        >
-          Search
-        </h1>
-      </div>
+     
+        <img src={logo} className={classes.logo}/>
       <Paper
         component="form"
         className={classes.barradePesquisa}
