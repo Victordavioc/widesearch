@@ -10,8 +10,8 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import SkeletonProdutos from "../components/produtos/SkeletonProdutos";
-import olxLogo from "../olx-logo.svg"
-import logo from '../logo.png'
+import olxLogo from "../olx-logo.svg";
+import logo from "../logo.png";
 
 interface Anuncio {
   Título: string;
@@ -35,7 +35,7 @@ const fetchAnuncios = async (
   const response = await axiosClient.get(query);
   return response.data; // Retorna os dados diretamente
 };
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const Button = styled.button`
   width: 100%;
@@ -61,10 +61,7 @@ const useStyles = makeStyles(() => ({
     minHeight: "100vh",
   },
   logo: {
-   
-=======
     width: "clamp(300px, 30vw, 500px)",
->>>>>>> lucas
   },
   barradePesquisa: {
     padding: "2px 4px",
@@ -91,10 +88,8 @@ const useStyles = makeStyles(() => ({
   divMap: {
     display: "grid",
 
-=======
     gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
     gap: "1rem",
->>>>>>> lucas
     marginTop: "1rem",
     maxWidth: "100%",
   },
@@ -102,8 +97,6 @@ const useStyles = makeStyles(() => ({
     width: 300,
     height: 400,
   },
-<<<<<<< HEAD
-=======
   logocontainer: {
     display: "flex",
     alignItems: "center",
@@ -118,7 +111,6 @@ const useStyles = makeStyles(() => ({
   engineContainer: {
     display: "flex",
   },
->>>>>>> lucas
 }));
 
 const ResultsPage: React.FC = () => {
@@ -149,8 +141,6 @@ const ResultsPage: React.FC = () => {
 
   return (
     <div className={classes.root}>
-      
-=======
       <div className={classes.logocontainer}>
         <img src={logo} alt="" className={classes.logo} />
       </div>
@@ -214,8 +204,6 @@ const ResultsPage: React.FC = () => {
 
         <Button type="submit">Pesquisar</Button>
       </form>
->>>>>>> lucas
-
       <div className={classes.divCards}>
         <div className={classes.divMap}>
           {isLoading ? (
@@ -232,7 +220,7 @@ const ResultsPage: React.FC = () => {
                 name={anuncio.Título}
                 price={anuncio.Preço}
                 image_url={anuncio.Imagem}
-                link={anuncio.Link} 
+                link={anuncio.Link}
               />
             ))
           )}
