@@ -1,21 +1,17 @@
 import React from "react";
 import { makeStyles } from "@mui/styles";
-import Paper from "@mui/material/Paper";
 import InputBase from "@mui/material/InputBase";
-import IconButton from "@mui/material/IconButton";
-import SearchIcon from "@mui/icons-material/Search";
 import { useQuery } from "@tanstack/react-query";
 import Produtos from "../components/produtos/Produtos";
-import Divider from "@mui/material/Divider";
 import { useState } from "react";
 import { axiosClient } from "../utils/axios";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
-import SkeletonProdutos from "../components/produtos/skeletonProdutos";
-import olxLogo from "../olx-logo.svg"
-import logo from '../logo.png'
+import SkeletonProdutos from "../components/produtos/SkeletonProdutos";
+import olxLogo from "../olx-logo.svg";
+import logo from "../logo.png";
 
 interface Anuncio {
   Título: string;
@@ -37,7 +33,7 @@ const fetchAnuncios = async (
   const response = await axiosClient.get(query);
   return response.data;
 };
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const Button = styled.button`
   width: 100%;
@@ -51,7 +47,6 @@ const Button = styled.button`
     cursor: pointer;
     opacity: 0.8;
     transition: 0.3s;
-
   }
 `;
 
@@ -64,7 +59,7 @@ const useStyles = makeStyles(() => ({
     minHeight: "100vh",
   },
   logo: {
-    width: "clamp(300px, 30vw, 500px)"
+    width: "clamp(300px, 30vw, 500px)",
   },
   barradePesquisa: {
     padding: "2px 4px",
@@ -99,7 +94,7 @@ const useStyles = makeStyles(() => ({
     width: 300,
     height: 401,
   },
-  logocontainer:{
+  logocontainer: {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
@@ -108,11 +103,11 @@ const useStyles = makeStyles(() => ({
   },
   engine: {
     width: "50px",
-    marginLeft: "1rem"
+    marginLeft: "1rem",
   },
   engineContainer: {
-    display: "flex"
-  }
+    display: "flex",
+  },
 }));
 
 const ResultsPage: React.FC = () => {
@@ -121,7 +116,7 @@ const ResultsPage: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [estado, setEstado] = React.useState("");
   const [searchState, setSearchState] = React.useState("");
-  
+
   const handleChange = (event: SelectChangeEvent) => {
     setEstado(event.target.value as string);
   };
@@ -145,65 +140,68 @@ const ResultsPage: React.FC = () => {
   return (
     <div className={classes.root}>
       <div className={classes.logocontainer}>
-        <img src={logo} alt="" className={classes.logo}/>
-        
+        <img src={logo} alt="" className={classes.logo} />
       </div>
       <div className={classes.engineContainer}>
-      <p>pesquisando anúncios da plataforma</p><img src={olxLogo} alt="" className={classes.engine}/>
+        <p>pesquisando anúncios da plataforma</p>
+        <img src={olxLogo} alt="" className={classes.engine} />
       </div>
-      <form
-    className={classes.barradePesquisa}
-    onSubmit={handleSearchSubmit}
-  >
-    <InputBase
-      sx={{  border: '1px solid #ced4da', borderRadius: '5px', width: '100%', height: '60px', padding: '0 10px' }}
-      value={termoDeBusca}
-      onChange={(e) => setTermoDeBusca(e.target.value)}
-      placeholder="Digite sua busca"
-    />
+      <form className={classes.barradePesquisa} onSubmit={handleSearchSubmit}>
+        <InputBase
+          sx={{
+            border: "1px solid #ced4da",
+            borderRadius: "5px",
+            width: "100%",
+            height: "60px",
+            padding: "0 10px",
+          }}
+          value={termoDeBusca}
+          onChange={(e) => setTermoDeBusca(e.target.value)}
+          placeholder="Digite sua busca"
+        />
 
-      <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label">Brasil</InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          value={estado}
-          label="Age"
-          onChange={handleChange}
-        >
-          <MenuItem value={""}>Brasil</MenuItem>
-          <MenuItem value={"go"}>GO</MenuItem>
-          <MenuItem value={"sp"}>SP</MenuItem>
-          <MenuItem value={"mg"}>MG</MenuItem>
-          <MenuItem value={"rj"}>RJ</MenuItem>
-          <MenuItem value={"ba"}>BA</MenuItem>
-          <MenuItem value={"rs"}>RS</MenuItem>
-          <MenuItem value={"pr"}>PR</MenuItem>
-          <MenuItem value={"pe"}>PE</MenuItem>
-          <MenuItem value={"ce"}>CE</MenuItem>
-          <MenuItem value={"pa"}>PA</MenuItem>
-          <MenuItem value={"ma"}>MA</MenuItem>
-          <MenuItem value={"sc"}>SC</MenuItem>
-          <MenuItem value={"pb"}>PB</MenuItem>
-          <MenuItem value={"es"}>ES</MenuItem>
-          <MenuItem value={"am"}>AM</MenuItem>
-          <MenuItem value={"al"}>AL</MenuItem>
-          <MenuItem value={"pi"}>PI</MenuItem>
-          <MenuItem value={"rn"}>RN</MenuItem>
-          <MenuItem value={"mt"}>MT</MenuItem>
-          <MenuItem value={"df"}>DF</MenuItem>
-          <MenuItem value={"ms"}>MS</MenuItem>
-          <MenuItem value={"se"}>SE</MenuItem>
-          <MenuItem value={"ro"}>RO</MenuItem>
-          <MenuItem value={"to"}>TO</MenuItem>
-          <MenuItem value={"ac"}>AC</MenuItem>
-          <MenuItem value={"ap"}>AP</MenuItem>
-          <MenuItem value={"rr"}>RR</MenuItem>
-        </Select>
-      </FormControl>
+        <FormControl fullWidth>
+          <InputLabel id="demo-simple-select-label">Brasil</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={estado}
+            label="Age"
+            onChange={handleChange}
+          >
+            <MenuItem value={""}>Brasil</MenuItem>
+            <MenuItem value={"go"}>GO</MenuItem>
+            <MenuItem value={"sp"}>SP</MenuItem>
+            <MenuItem value={"mg"}>MG</MenuItem>
+            <MenuItem value={"rj"}>RJ</MenuItem>
+            <MenuItem value={"ba"}>BA</MenuItem>
+            <MenuItem value={"rs"}>RS</MenuItem>
+            <MenuItem value={"pr"}>PR</MenuItem>
+            <MenuItem value={"pe"}>PE</MenuItem>
+            <MenuItem value={"ce"}>CE</MenuItem>
+            <MenuItem value={"pa"}>PA</MenuItem>
+            <MenuItem value={"ma"}>MA</MenuItem>
+            <MenuItem value={"sc"}>SC</MenuItem>
+            <MenuItem value={"pb"}>PB</MenuItem>
+            <MenuItem value={"es"}>ES</MenuItem>
+            <MenuItem value={"am"}>AM</MenuItem>
+            <MenuItem value={"al"}>AL</MenuItem>
+            <MenuItem value={"pi"}>PI</MenuItem>
+            <MenuItem value={"rn"}>RN</MenuItem>
+            <MenuItem value={"mt"}>MT</MenuItem>
+            <MenuItem value={"df"}>DF</MenuItem>
+            <MenuItem value={"ms"}>MS</MenuItem>
+            <MenuItem value={"se"}>SE</MenuItem>
+            <MenuItem value={"ro"}>RO</MenuItem>
+            <MenuItem value={"to"}>TO</MenuItem>
+            <MenuItem value={"ac"}>AC</MenuItem>
+            <MenuItem value={"ap"}>AP</MenuItem>
+            <MenuItem value={"rr"}>RR</MenuItem>
+          </Select>
+        </FormControl>
 
-    <Button type="submit" >Pesquisar</Button>
-  </form >
+        <Button type="submit">Pesquisar</Button>
+      </form>
 
       <div className={classes.divCards}>
         <div className={classes.divMap}>
@@ -221,7 +219,7 @@ const ResultsPage: React.FC = () => {
                 name={anuncio.Título}
                 price={anuncio.Preço}
                 image_url={anuncio.Imagem}
-                link={anuncio.Link} 
+                link={anuncio.Link}
               />
             ))
           )}
