@@ -86,7 +86,7 @@ const useStyles = makeStyles(() => ({
   divMap: {
     display: "grid",
     gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
-    gap: "2rem",
+    gap: "1rem",
     marginTop: "1rem",
     maxWidth: "100%",
   },
