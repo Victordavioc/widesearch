@@ -1,0 +1,57 @@
+@startuml name
+
+' Definindo a classe Usuario
+class Usuario {
+  +String nome
+  +String email
+  +String senha
+  +boolean isLogado()
+  +salvarBusca(busca: Busca)
+  +ativarNotificacao(produto: Produto)
+}
+
+' Definindo a classe Produto
+class Produto {
+  +String nome
+  +String descricao
+  +float preco
+  +String plataforma
+  +String localizacao
+  +exibirDetalhes()
+  +gerarLinkCompra()
+}
+
+' Definindo a classe Busca
+class Busca {
+  +String termo
+  +String categoria
+  +float precoMin
+  +float precoMax
+  +String localizacao
+  +realizarBusca()
+  +filtrarResultados()
+}
+
+' Definindo a classe Notificacao
+class Notificacao {
+  +String tipo
+  +boolean ativo
+  +String mensagem
+  +enviarNotificacao()
+}
+
+' Definindo a classe Sistema
+class Sistema {
+  +realizarScraping()
+  +exibirResultados()
+  +coletarDadosExterna()
+}
+
+' Relacionamentos
+Usuario --> Busca : "realiza"
+Usuario --> Notificacao : "recebe"
+Sistema --> Produto : "exibe"
+Sistema --> Busca : "gerencia"
+Produto --> Busca : "relacionado"
+
+@enduml
